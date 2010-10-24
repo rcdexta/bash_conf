@@ -1,0 +1,32 @@
+# Hello Messsage --------------------------------------------------
+printf "Kernel Information: `uname -smr`\n" 
+printf "${COLOR_BROWN}`bash --version`\n"
+printf "${COLOR_GRAY}Uptime: `uptime`\n"
+printf "${COLOR_GRAY}Server time is: `date`\n"
+
+export EDITOR="mate -w"
+
+# Prompts ----------------------------------------------------------
+# This includes the current git branch if in a git repo.
+#   See http://repo.or.cz/w/git.git?a=blob_plain;f=contrib/completion/git-completion.bash;hb=master
+#   PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+PS1="\[${COLOR_GREEN}\]\w \$(__git_ps1 '(%s)')> \[${COLOR_NC}\]"  # Primary prompt with path & git branch
+SUDO_PS1="\[${COLOR_RED}\]\w\[${COLOR_NC}\]# "
+
+# This runs before the prompt and sets the title of the xterm* window.  If you set the title in the prompt
+# weird wrapping errors occur on some systems, so this method is superior
+# export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} ${PWD}"; echo -ne "\007"'  # user@host path
+
+export PS2='$ '    # Secondary prompt
+export PS3='#? '   # Prompt 3
+export PS4='+'     # Prompt 4
+
+function xtitle {  # change the title of your xterm* window
+  unset PROMPT_COMMAND
+  echo -ne "\033]0;$1\007" 
+}
+
+# Append commands to the bash history for each tab rather than overwrite. This kicks ass when using multiple tabs.
+# See http://marc-abramowitz.com/archives/2005/03/19/dont-lose-history-in-bash/
+shopt -s histappend
+PROMPT_COMMAND='history -a'
