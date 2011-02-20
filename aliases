@@ -8,6 +8,7 @@ alias r='ruby'
 # alias ls="ls -F"
 # alias ll="ls -lG"
 alias ll='ls -lAhG'
+alias lt='ls -ltr'
 
 # git
 alias gl='git pull'
@@ -36,16 +37,17 @@ alias rst='touch tmp/restart.txt'
 alias %=' '
 
 # changing directory to code project
-function c { cd ~/projects/$1; }
+function c { cd ~/work/$1; }
 
 # misc
+alias clearasl='sudo rm -rf /private/var/log/asl/*.asl'
 alias reload='. ~/.bash_profile'
 alias f='find . -iname'
 alias ducks='du -cksh * | sort -rn|head -11' # Lists folders and files sizes in the current folder
 alias top='top -o cpu'
 alias systail='tail -f /var/log/system.log'
 alias df='df -h'
-_autojump() 
+_autojump()
 {
         local cur
         COMPREPLY=()
@@ -61,4 +63,4 @@ if [[ ! $PROMPT_COMMAND =~ autojump ]]; then
 fi 
 alias jumpstat="autojump --stat"
 function j { new_path="$(autojump $@)";if [ -n "$new_path" ]; then echo -e "\\033[31m${new_path}\\033[0m"; cd "$new_path";fi }
-if [[ -s /Users/kunday/.rvm/scripts/rvm ]] ; then source /Users/kunday/.rvm/scripts/rvm ; fi
+if [[ -s /Users/RC/.rvm/scripts/rvm ]] ; then source /Users/RC/.rvm/scripts/rvm ; fi

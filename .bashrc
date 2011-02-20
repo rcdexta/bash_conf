@@ -78,7 +78,7 @@ if [[ -n "$PS1" ]]; then
   fi
 
   # some more ls aliases
-  alias ll='ls -alF'
+  alias ll='ls -altF'
   alias la='ls -A'
   alias l='ls -CF'
 
@@ -101,6 +101,7 @@ if [[ -n "$PS1" ]]; then
   source ~/.bash/colors
   source ~/.bash/aliases
   source ~/.bash/config
+  source ~/.bash/bashmarks
 
   alias screencap='xvidcap --cap_geometry 1920x1200+0+0'
   if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi

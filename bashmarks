@@ -1,0 +1,42 @@
+if [ ! -f ~/.bash/.sdirs ]; then
+  touch ~/.bash/.sdirs
+fi
+
+# enable custom tab completion
+shopt -s progcomp
+
+# save a bookmark
+function s {
+   cat ~/.bash/.sdirs | grep -v "export DIR_$1=" > ~/.bash/.sdirs1
+   mv ~/.bash/.sdirs1 ~/.bash/.sdirs
+   echo "export DIR_$1=$PWD" >> ~/.bash/.sdirs
+}
+
+# jump to bookmark
+function g {
+  source ~/.bash/.sdirs
+  cd $(eval $(echo echo $(echo \$DIR_$1)))
+}
+
+# list bookmarks without dirname
+function _l {
+  source ~/.bash/.sdirs
+  env | grep "^DIR_" | cut -c5- | grep "^.*=" | cut -f1 -d "="
+}
+
+# completion command for g
+function _gcomp {
+  local curw
+  COMPREPLY=()
+  curw=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W '`_l`' -- $curw))
+  return 0
+}
+
+# bind completion command for g to _gcomp
+complete -F _gcomp g
+
+#USAGE:
+# s <dir_path> - Save directory to bookmark
+# g [TAB]<dir_path> - Go to directory
+# l - List all bookmarks
