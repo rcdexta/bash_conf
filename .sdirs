@@ -1,2 +1,5 @@
 export DIR_home=/Users/RC
 export DIR_rvm=/Users/RC/.rvm/gems/ruby-1.9.2-p0
+export DIR_aathichudi=/Users/RC/learn/heroku/aathichudi
+export DIR_lp=/Users/RC/work/ListeningPortal
+export DIR_jigsaw=/Users/RC/work/jigsaw

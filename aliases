@@ -21,6 +21,7 @@ alias gb='git branch'
 alias gs='git status'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 alias gdm='git diff | mate'
+alias ec2='ssh -i ec2key.pem bitnami@ec2-204-236-163-64.us-west-1.compute.amazonaws.com'
 
 # rails
 alias rc='rails console'
@@ -32,6 +33,28 @@ alias tlog='tail -f log/development.log'
 alias scaffold='script/generate nifty_scaffold'
 alias migrate='rake db:migrate db:test:clone'
 alias rst='touch tmp/restart.txt'
+
+#jigsaw
+alias start_tomcat="env 'CATALINA_OPTS=-Xms1024m -Xmx1024m ${TOMCAT_OPTS}' ${TOMCAT_HOME}/bin/startup.sh"
+alias stop_tomcat="${TOMCAT_HOME}/bin/shutdown.sh"
+alias clean_tomcat="rm -rf ${TOMCAT_HOME}/work ${TOMCAT_HOME}/temp ${TOMCAT_HOME}/logs/*"
+alias log="tail -f ${TOMCAT_HOME}/logs/*"
+
+#jruby-specific
+alias jcons='jruby -S script/console'
+alias jspec='jruby -S script/spec'
+alias jserv='jruby -S script/server'
+
+#jigsaw-specific
+alias js.ci.unit="ssh jigsaw@10.5.3.12"
+alias js.ci.smoke="ssh jigsaw@10.5.3.163"
+alias js.prod="ssh -A rramach@chijsawprod02.thoughtworks.com"
+alias js.prod.task="ssh -A root@chijsawtaskscheduler01.thoughtworks.com"
+alias js.uat="ssh rramach@chijsaw05.thoughtworks.com"
+alias js.uat.task="ssh rramach@chijsaw04.thoughtworks.com"
+alias js.manqa="ssh jigsaw_qa@jigsawqa01.thoughtworks.com"
+alias js.perf="ssh jigsaw_perf@10.5.1.81"
+alias cdjs="cd ~/Project/Office/jigsaw/"
 
 # commands starting with % for pasting from web
 alias %=' '
